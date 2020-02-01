@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    font-size: 12px;
+  }
+  body .container {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    background-image: linear-gradient(to top right, #dffff6, #6fd7ff);
+  }
+  body .container .center {
+    width: 275px;
+    height: 490px;
+    background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+    overflow: hidden;
+    border-radius: 20px 20px 10px 10px;
+    -webkit-box-shadow: 14px 18px 26px -10px rgba(0, 0, 0, 0.51);
+    -moz-box-shadow: 14px 18px 26px -10px rgba(0, 0, 0, 0.51);
+    box-shadow: 14px 18px 26px -10px rgba(0, 0, 0, 0.51);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-height: 500px) {
+    body .container .center {
+      transform: translate(-50%, -50%) scale(0.8);
+      transition: transform 0.5;
+    }
+  }
+  body .container .center .ear {
+    width: 200px;
+    height: 200px;
+    background-color: #243946;
+    display: inline-block;
+    position: absolute;
+    top: -110px;
+    border-radius: 50%;
+  }
+  body .container .center .ear--left {
+    left: -135px;
+  }
+  body .container .center .ear--right {
+    right: -135px;
+  }
+  body .container .center .face {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    margin: 80px auto 10px;
+    align-items: center;
+    --rotate-head: 0deg;
+    transform: rotate(var(--rotate-head));
+    transition: transform 0.2s;
+    transform-origin: center 20px;
+  }
+  body .container .center .face .eye {
+    width: 25px;
+    height: 25px;
+    background-color: #243946;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  body .container .center .face .eye.eye--left {
+    margin-right: 40px;
+  }
+  body .container .center .face .eye.eye--right {
+    margin-left: 40px;
+  }
+  body .container .center .face .eye .glow {
+    width: 12px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    top: 3px;
+    right: -12px;
+    transform: rotate(38deg);
+  }
+  body .container .center .face .nose {
+    position: relative;
+    top: 30px;
+    transform: scale(1.1);
+  }
+  body .container .center .face .nose .glow {
+    width: 15px;
+    height: 8px;
+    background-color: #476375;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 32%;
+  }
+  body .container .center .face .mouth {
+    position: relative;
+    margin-top: 45px;
+  }
+  body .container .center .face .mouth svg.smile {
+    stroke: #243946;
+    position: absolute;
+    transform: scale(1.1);
+    top: -19px;
+    left: -42px;
+  }
+  body .container .center .face .mouth .mouth-hole {
+    width: 60px;
+    height: 15px;
+    background-color: #243946;
+    border-radius: 50%/100% 100% 0 0;
+    position: absolute;
+    top: 0;
+    left: -29px;
+    transform: rotate(180deg);
+    z-index: -1;
+  }
+  @keyframes breath {
+    0% {
+      transform: rotateX(0deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+    50% {
+      transform: rotateX(60deg);
+    }
+  }
+  body .container .center .face .mouth .tongue {
+    width: 30px;
+    height: 20px;
+    background-color: #ffd7dd;
+    position: absolute;
+    top: 5px;
+    left: -13px;
+    transform: rotateX(60deg);
+    transform-origin: top;
+  }
+  body .container .center .face .mouth .tongue.breath {
+    animation: breath 0.3s infinite;
+  }
+  body .container .center .face .mouth .tongue-top {
+    width: 30px;
+    height: 30px;
+    background-color: #ffd7dd;
+    border-radius: 15px;
+    position: absolute;
+    bottom: -15px;
+  }
+  body .container .center .face .mouth .line {
+    width: 30px;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    background-color: #fcb7bf;
+  }
+  body .container .center .face .mouth .median {
+    width: 4px;
+    height: 25px;
+    background-color: #fcb7bf;
+    position: absolute;
+    left: 50%;
+  }
+  body .container .center .hands {
+    position: relative;
+  }
+  body .container .center .hands .hand {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
+  }
+  body .container .center .hands .hand.hand--left {
+    left: 50px;
+  }
+  body .container .center .hands .hand.hand--left.hide {
+    transform: translate(4px, -160px) rotate(-130deg);
+  }
+  body .container .center .hands .hand.hand--left.peek {
+    transform: translate(-10px, -120px) rotate(-122deg);
+  }
+  body .container .center .hands .hand.hand--left.hang {
+    transform: translate(2px, -20px) rotate(7deg);
+  }
+  body .container .center .hands .hand.hand--right {
+    left: 170px;
+  }
+  body .container .center .hands .hand.hand--right.hide {
+    transform: translate(-10px, -160px) rotate(130deg);
+  }
+  body .container .center .hands .hand.hand--right.peek {
+    transform: translate(4px, -120px) rotate(122deg);
+  }
+  body .container .center .hands .hand.hand--right.hang {
+    transform: translate(4px, -20px) rotate(-7deg);
+  }
+  body .container .center .hands .hand .finger {
+    position: relative;
+  }
+  body .container .center .hands .hand .finger .bone {
+    width: 20px;
+    height: 20px;
+    background-color: #fac555;
+    border: 2px solid #243946;
+    border-top: none;
+    border-bottom: none;
+  }
+  body .container .center .hands .hand .finger .nail {
+    width: 20px;
+    height: 18px;
+    background-color: #fac555;
+    border: 2px solid #243946;
+    position: absolute;
+    top: 10px;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  body .container .center .hands .hand .finger:nth-child(1), body .container .center .hands .hand .finger:nth-child(3) {
+    left: 4px;
+    z-index: 1;
+  }
+  body .container .center .hands .hand .finger:nth-child(1) .bone, body .container .center .hands .hand .finger:nth-child(3) .bone {
+    height: 10px;
+  }
+  body .container .center .hands .hand .finger:nth-child(3) {
+    left: -4px;
+  }
+  body .container .center .hands .hand .finger:nth-child(2) {
+    top: -5px;
+    z-index: 2;
+  }
+  body .container .center .hands .hand .finger:nth-child(1) .nail, body .container .center .hands .hand .finger:nth-child(3) .nail {
+    top: 0;
+    z-index: -1;
+  }
+  body .container .center .login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  body .container .center .login label {
+    position: relative;
+    padding: 0 20px;
+  }
+  body .container .center .login label .fa {
+    position: absolute;
+    top: 40%;
+    left: 35px;
+    color: #bbb;
+  }
+  body .container .center .login label input,
+  body .container .center .login label .login-button {
+    width: 100%;
+    height: 35px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+  }
+  body > div > div > div.login > button {
+      cursor: pointer;
+  }
+  body .container .center .login label input {
+    padding: 0 20px 0 40px;
+    margin: 5px 0;
+    -webkit-box-shadow: 19px 17px 19px -15px rgba(0, 0, 0, 0.82);
+    -moz-box-shadow: 19px 17px 19px -15px rgba(0, 0, 0, 0.82);
+    box-shadow: 19px 17px 19px -15px rgba(0, 0, 0, 0.82);
+  }
+  body .container .center .login label input.password {
+    padding: 0 90px 0 40px;
+  }
+  body .container .center .login label .password-button {
+    width: 90px;
+    height: 27px;
+    background-color: #243946;
+    position: absolute;
+    top: 9px;
+    right: 25px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    -webkit-box-shadow: 37px 36px 32px -11px rgba(0, 0, 0, 0.46);
+    -moz-box-shadow: 37px 36px 32px -11px rgba(0, 0, 0, 0.46);
+    box-shadow: 37px 36px 32px -11px rgba(0, 0, 0, 0.46);
+  }
+  body .container .center .login .login-button {
+    width: calc(100% - 40px);
+    margin: 20px 20px 0;
+    background-color: #243946;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    height: 35px;
+    color: #fff;
+  }
+  body .container .center .social-buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  body .container .center .social-buttons .social {
+    width: 35px;
+    height: 35px;
+    background-color: #243946;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+  body .container .center .social-buttons .social .fa {
+    font-size: 18px;
+  }
+  body .container .center .social-buttons .social:active {
+    transform: scale(0.95);
+  }
+  body .container .center .footer {
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/chat.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/typing-indicator.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div id="login-form" class="center">
+            <div class="ear ear--left"></div>
+            <div class="ear ear--right"></div>
+            <div class="face">
+                <div class="eyes">
+                    <div class="eye eye--left">
+                        <div class="glow"></div>
+                    </div>
+                    <div class="eye eye--right">
+                        <div class="glow"></div>
+                    </div>
+                </div>
+                <div class="nose">
+                    <svg width="38.161" height="22.03">
+                        <path d="M2.017 10.987Q-.563 7.513.157 
+                        4.754C.877 1.994 2.976.135 6.164.093 
+                        16.4-.04 22.293-.022 32.048.093c3.501.042 
+                        5.48 2.081 6.02 4.661q.54 2.579-2.051 6.233-8.612 
+                        10.979-16.664 11.043-8.053.063-17.336-11.043z" fill="#243946">
+                        </path>
+                    </svg>
+                    <div class="glow"></div>
+                </div>
+                <div class="mouth">
+                    <svg class="smile" viewBox="-2 -2 84 23" width="84" height="23">
+                        <path d="M0 0c3.76 9.279 9.69 18.98 26.712 19.238 17.022.258 10.72.258 28 0S75.959 9.182 79.987.161" fill="none" stroke-width="3" stroke-linecap="square" stroke-miterlimit="3"></path>
+                    </svg>
+                    <div class="mouth-hole"></div>
+                    <div class="tongue breath">
+                        <div class="tongue-top"></div>
+                        <div class="line"></div>
+                        <div class="median"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /face -->
+
+            <div class="hands">
+                <div class="hand hand--left">
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                </div>
+                <div class="hand hand--right">
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                    <div class="finger">
+                        <div class="bone"></div>
+                        <div class="nail"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /hands -->
+            <div class="login">
+                <label for="">
+                    <div class="fa fa-user"></div>
+                    <input required type="text" name="" class="username" autocomplete="on" 
+                    placeholder="Pick a nickname" id="txtUserName">
+                </label>
+                <label for="">
+                    <div class="fa fa-key"></div>
+                    <input type="password" name="" class="password" autocomplete="off" 
+                        placeholder="Ko cần đâu :v" id="">
+                    <button class="password-button">Show</button>
+                </label>
+                <button id="btnLogin" class="login-button">Join</button>
+            </div>
+            <div class="social-buttons">
+                <div class="social">
+                    <div class="fa fa-facebook"></div>
+                </div>
+                <div class="social">
+                    <div class="fa fa-instagram"></div>
+                </div>
+                <div class="social">
+                    <div class="fa fa-github"></div>
+                </div>
+            </div>
+            <div class="footer">Madu</div>
+        </div>
+        <div id="chat-form">
+            <div class="container-chat clearfix">
+                <div class="people-list" id="people-list">
+                  <div class="search">
+                    <input type="text" placeholder="search" />
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <ul id="user-box" class="list">
+                    
+                  </ul>
+                </div>
+                
+                <div class="chat">
+                  <div class="chat-header clearfix">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+                    
+                    <div class="chat-about">
+                      <div id="current-user" class="chat-with">Chat with Vincent Porter</div>
+                      <!-- <div class="chat-num-messages">already 1 902 messages</div> -->
+                      <div id="logout" style="cursor: pointer;" >Log out</div>
+                    </div>
+                    <i class="fa fa-star"></i>
+                  </div> <!-- end chat-header -->
+                  
+                  <div class="chat-history scroll-style">
+                    <ul class="message-content">
+                      <div class="content">
+                        
+                      </div>
+                      <div class="typing-indicator-wrapper">
+                        <div class="user-typing-data">
+                          <span class="message-data-name"><i id="user-typing"></i></span>
+                        </div>
+                        <div class="typing-indicator">
+                          <i class="fa fa-circle online"></i>
+                          <i class="fa fa-circle online" style="color: #AED2A6"></i>
+                          <i class="fa fa-circle online" style="color:#DAE9DA"></i>
+                        </div>
+                      </div>  
+                    </ul>
+                    
+                  </div> <!-- end chat-history -->
+                  
+                  <div class="chat-message clearfix">
+                    <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                            
+                    <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-file-image-o"></i>
+                    
+                    <button id="btn-send-message">Send</button>
+            
+                  </div> <!-- end chat-message -->
+                  
+                </div> <!-- end chat -->
+                
+              </div> <!-- end container -->
+        </div>
+    </div>
+</body>
+<script src="./js/client.js"></script>
+<script src="./js/script.js"></script>
+</html>
