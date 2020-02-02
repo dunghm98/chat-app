@@ -12,13 +12,13 @@ body {
 
 .container-chat {
   margin: 0 auto;
-  width: 750px;
+  max-width: 60%;
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
-  width: 260px;
+  width: 25%;
   float: left;
 }
 .people-list .search {
@@ -59,7 +59,7 @@ body {
 }
 
 .chat {
-  width: 490px;
+  width: 75%;
   float: left;
   background: #F2F5F8;
   border-top-right-radius: 5px;
@@ -241,3 +241,10 @@ body {
                       color-stop(.5, rgba(255, 255, 255, .2)),
               color-stop(.5, transparent), to(transparent));
  }
+
+ @media (max-height: 500px) {
+  body .container #chat-form {
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: transform 0.5;
+  }
+}

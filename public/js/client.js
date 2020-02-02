@@ -77,7 +77,7 @@ $(document).ready(function(){
     $("#login-form").show();
     $('#chat-form').hide();
     $('.typing-indicator-wrapper').hide();
-    $('#btnLogin').click(function(){
+    function login(){
         let username = $('#txtUserName').val();
         if(username != ''){
             socket.emit("client-send-username",username);
@@ -85,16 +85,35 @@ $(document).ready(function(){
         else{
             alert("Nhập tên vào đêzzz") 
         }
-        
+    }
+    function sendMessage(){
+        let message = $('#message-to-send').val();
+        socket.emit("user-send-message",message);
+    }
+    $('#btnLogin').click(function(){
+        login();
     });
     $('#logout').click(function(){
         socket.emit("logout");
         $("#login-form").show(2000);
         $('#chat-form').hide(1000);
     });
+    // trigger enter 
+    $('#txtUserName').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            login();
+        }
+    });
+    $('#message-to-send').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            sendMessage();
+            $('#message-to-send').val(null);
+        }
+    });
     $('#btn-send-message').click(function(){
-        let message = $('#message-to-send').val();
-        socket.emit("user-send-message",message);
+        sendMessage();
     })
     $('#message-to-send').focusin(function(){
         socket.emit("user-typing");
@@ -102,6 +121,7 @@ $(document).ready(function(){
     $('#message-to-send').focusout(function(){
         socket.emit("user-end-typing");
     });
-
+    
+// end document ready
 })
 
